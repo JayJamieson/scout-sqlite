@@ -1,0 +1,59 @@
+{
+  "name": "scout-sqlite",
+  "version": "0.0.1",
+  "description": "manage fts5 indexes in your turso/sqlite/libsqlite db",
+  "type": "module",
+  "bin": {
+    "scout-sqlite": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "test": "vitest",
+    "lint:check": "eslint \"{src,apps,libs,tests,bin}/**/*.{ts,mjs}\" --max-warnings 0",
+    "format:check": "prettier --check \"{src,apps,libs,tests,bin}/**/*.{ts,mjs}\"",
+    "format": "prettier --write \"{src,apps,libs,tests,bin}/**/*.{ts,mjs}\"",
+    "lint": "eslint \"{src,apps,libs,tests,bin}/**/*.{ts,mjs}\" --fix --max-warnings 0"
+  },
+  "keywords": [
+    "SQLite",
+    "fts5",
+    "turso",
+    "libsqlite"
+  ],
+  "author": "JayJamieson",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/JayJamieson/scout-sqlite"
+  },
+  "exports": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENCE",
+    "package.json"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "@typescript-eslint/eslint-plugin": "^7.12.0",
+    "@typescript-eslint/parser": "^7.12.0",
+    "eslint": "^8.56.0",
+    "eslint-config-love": "47.0.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.0.0",
+    "eslint-plugin-promise": "^6.2.0",
+    "globals": "^15.4.0",
+    "prettier": "^3.3.1",
+    "tsx": "^4.15.1",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.12.0",
+    "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "find-up": "^7.0.0",
+    "sqlite-fts-util": "^1.0.6"
+  }
+}
