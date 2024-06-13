@@ -1,5 +1,4 @@
 import { findUp } from "find-up";
-
 import { readFile } from "fs/promises";
 
 export type Config = {
@@ -17,9 +16,9 @@ export const DefaultConfig: Config["tables"] = [
   {
     table: "YOUR TABLE HERE",
     idColumn: "YOUR TABLE HERE",
-    columns: ["YOUR", "COLUMNS", "HERE"]
-  }
-]
+    columns: ["YOUR", "COLUMNS", "HERE"],
+  },
+];
 
 const configPaths = Object.freeze([
   "sqlitefts.json",
@@ -33,17 +32,19 @@ const configPaths = Object.freeze([
   ".sqlitefts5rc",
 ]);
 
-export async function getConfigPath(): Promise<{isFound: boolean; path: string}> {
+export async function getConfigPath(): Promise<{
+  isFound: boolean;
+  path: string;
+}> {
   const foundPath = await findUp(configPaths);
 
   if (foundPath === undefined) {
-    return {isFound: false, path: DefaultPath};
+    return { isFound: false, path: DefaultPath };
   }
-  return {isFound: true, path: foundPath};
-};
+  return { isFound: true, path: foundPath };
+}
 
-export async function loadConfig(path: string): Promise<Config> {
-   const config: Config = JSON.parse(await readFile(path, "utf8"));
-
+export async function loadConfig(path: string): Promise<Config["tables"]> {
+  const config: Config["tables"] = JSON.parse(await readFile(path, "utf8"));
   return config;
 }

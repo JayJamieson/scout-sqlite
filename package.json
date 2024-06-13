@@ -52,6 +52,7 @@
     "vitest": "^1.6.0"
   },
   "dependencies": {
+    "@libsql/client": "^0.6.2",
     "commander": "^12.1.0",
     "find-up": "^7.0.0",
     "sqlite-fts-util": "^1.0.6"
