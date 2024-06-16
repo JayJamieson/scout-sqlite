@@ -4,7 +4,7 @@
   "description": "manage fts5 indexes in your turso/sqlite/libsqlite db",
   "type": "module",
   "bin": {
-    "scout-sqlite": "./dist/cli/index.js"
+    "scout": "./dist/cli/index.js"
   },
   "scripts": {
     "build": "rm -rf ./dist && tsc",
@@ -25,9 +25,7 @@
   "repository": {
     "url": "https://github.com/JayJamieson/scout-sqlite"
   },
-  "exports": "./dist/index.js",
-  "types": "dist/index.d.ts",
-  "main": "dist/index.js",
+  "main": "dist/cli/index.js",
   "files": [
     "dist",
     "README.md",

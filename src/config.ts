@@ -3,16 +3,18 @@ import { readFile } from "fs/promises";
 
 export type Config = {
   isFound?: boolean;
-  tables: {
-    idColumn: string;
-    table: string;
-    columns: string[];
-  }[];
+  tables: IndexSchema[];
+};
+
+type IndexSchema = {
+  idColumn: string;
+  table: string;
+  columns: string[];
 };
 
 export const DefaultPath = `${process.cwd()}/sqlitefts5rc.json`;
 
-export const DefaultConfig: Config["tables"] = [
+export const DefaultConfig: IndexSchema[] = [
   {
     table: "YOUR TABLE HERE",
     idColumn: "YOUR TABLE HERE",
@@ -44,7 +46,7 @@ export async function getConfigPath(): Promise<{
   return { isFound: true, path: foundPath };
 }
 
-export async function loadConfig(path: string): Promise<Config["tables"]> {
-  const config: Config["tables"] = JSON.parse(await readFile(path, "utf8"));
+export async function loadConfig(path: string): Promise<IndexSchema[]> {
+  const config: IndexSchema[] = JSON.parse(await readFile(path, "utf8"));
   return config;
 }

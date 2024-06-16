@@ -17,6 +17,7 @@ program
 program
   .command("apply")
   .description("apply fts5 index configuration to your turso database")
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   .action(async function (params, options) {
     if (!configPath.isFound) {
       program.error("No configuration file found, use init to create one");
@@ -37,24 +38,25 @@ program
       authToken: process.env.TURSO_AUTH_TOKEN,
     });
 
-    const first = config.pop()!;
+    for (const schema of config) {
+      const sqlFTS = fts5Table({
+        table: schema.table,
+        idColumn: schema.idColumn,
+        columns: schema.columns,
+      });
 
-    const sqlFTS = fts5Table({
-      table: first.table,
-      idColumn: first.idColumn,
-      columns: first.columns,
-    });
+      const sql = `BEGIN TRANSACTION;\n${sqlFTS()}\nCOMMIT;`;
 
-    const sql = `BEGIN TRANSACTION;\n${sqlFTS()}\nCOMMIT;`;
-
-    try {
-      const result = await turso.executeMultiple(sql);
-      console.log(result);
-    } catch (error) {
-      console.log(error);
+      try {
+        console.log("Creating FTS5 index for table:", schema.table);
+        await turso.executeMultiple(sql);
+      } catch (error) {
+        console.log(
+          "Skipping index creation due to error:",
+          (error as Error).message,
+        );
+      }
     }
-
-
   });
 
 program
