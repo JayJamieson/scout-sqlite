@@ -1,6 +1,5 @@
 # Scout-sqlite (WIP)
 
-> [!NOTE]
 > This is still a WIP tool. I am Looking for your feedback in [Feedback](https://github.com/JayJamieson/scout-sqlite/issues/1) issue.
 
 Currently tools like [Drizzle ORM](https://orm.drizzle.team/docs/overview), [Kysely](https://kysely.dev/docs/intro) don't support SQLite FTS index creation. Scout-sqlite aims to bridge that gap by helping create and manage FTS index creation.
@@ -17,7 +16,6 @@ Install the `scout-sqlite` cli using your favourite package manager
 Initialize an empty configuration file with `npx scout init`. This creates a `sqlitefts5rc.json` file in the current working directory.
 
 ```json
-// sqlitefts5rc.json
 [
   {
     "table": "YOUR TABLE HERE",

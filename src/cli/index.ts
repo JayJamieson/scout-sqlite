@@ -12,7 +12,7 @@ program
   .description(
     "scout-sqlite is a utility CLI to help generate or apply FTS5 indexes to your SQLite databases",
   )
-  .version("0.0.1");
+  .version("0.0.2");
 
 program
   .command("apply")

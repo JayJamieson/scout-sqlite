@@ -1,10 +1,10 @@
 {
   "name": "scout-sqlite",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "manage fts5 indexes in your turso/sqlite/libsql db",
   "type": "module",
   "bin": {
-    "scout": "./dist/cli/index.js"
+    "scout": "dist/cli/index.js"
   },
   "scripts": {
     "build": "rm -rf ./dist && tsc",
@@ -24,7 +24,7 @@
   "author": "JayJamieson",
   "license": "MIT",
   "repository": {
-    "url": "https://github.com/JayJamieson/scout-sqlite"
+    "url": "git+https://github.com/JayJamieson/scout-sqlite.git"
   },
   "main": "dist/cli/index.js",
   "files": [
