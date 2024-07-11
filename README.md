@@ -2,9 +2,17 @@
 
 > This is still a WIP tool. I am Looking for your feedback in [Feedback](https://github.com/JayJamieson/scout-sqlite/issues/1) issue.
 
-Currently tools like [Drizzle ORM](https://orm.drizzle.team/docs/overview), [Kysely](https://kysely.dev/docs/intro) don't support SQLite FTS index creation. Scout-sqlite aims to bridge that gap by helping create and manage FTS index creation.
+Currently tools like [Drizzle ORM](https://orm.drizzle.team/docs/overview), [Kysely](https://kysely.dev/docs/intro) don't support SQLite FTS index creation through table definitions. Scout-sqlite aims to bridge that gap by helping create and manage FTS index creation by generating and applying the SQL for you.
 
 ## Getting Started
+
+Ensure your turso databse URL and token are configured. See TS quick [start guide](https://docs.turso.tech/sdk/ts/quickstart) for how to generate a new token.
+
+```env
+TURSO_DATABASE_URL=
+TURSO_AUTH_TOKEN=
+
+```
 
 Install the `scout-sqlite` cli using your favourite package manager
 
