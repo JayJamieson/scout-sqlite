@@ -1,6 +1,6 @@
 {
   "name": "scout-sqlite",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "manage fts5 indexes in your turso/sqlite/libsql db",
   "type": "module",
   "bin": {
