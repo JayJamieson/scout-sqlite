@@ -7,6 +7,17 @@ import fts5Table from "sqlite-fts-util";
 
 const configPath = await getConfigPath();
 
+const makeClient = (options: { url: string; authToken?: string }) => {
+  return options.authToken
+    ? createClient({
+        url: options.url,
+        authToken: options.authToken,
+      })
+    : createClient({
+        url: options.url,
+      });
+};
+
 program
   .name("scout-sqlite")
   .description(
@@ -16,24 +27,28 @@ program
 
 program
   .command("apply")
+  .option("-l, --local", "use local file", false)
   .description("apply fts5 index configuration to your turso database")
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  .action(async function (params, options) {
+  .action(async function (params: { local: boolean }, options) {
     if (!configPath.isFound) {
       program.error("No configuration file found, use init to create one");
     }
     const config = await loadConfig(configPath.path);
 
-    if (
-      process.env.TURSO_DATABASE_URL === undefined ||
-      process.env.TURSO_AUTH_TOKEN === undefined
-    ) {
+    if (process.env.TURSO_DATABASE_URL === undefined) {
       program.error(
-        "Please setup TURSO_DATABASE_URL and TURSO_AUTH_TOKEN environment variables.\nSee: https://docs.turso.tech/sdk/ts/quickstart",
+        "Please setup TURSO_DATABASE_URL and TURSO_AUTH_TOKEN environment variable.\nSee: https://docs.turso.tech/sdk/ts/quickstart\n",
       );
     }
 
-    const turso = createClient({
+    if (process.env.TURSO_AUTH_TOKEN === undefined && !params.local) {
+      program.error(
+        "Please setup TURSO_AUTH_TOKEN environment variable or use -l flag for local files.\nSee: https://docs.turso.tech/sdk/ts/quickstart\n",
+      );
+    }
+
+    const dbClient = makeClient({
       url: process.env.TURSO_DATABASE_URL,
       authToken: process.env.TURSO_AUTH_TOKEN,
     });
@@ -49,7 +64,7 @@ program
 
       try {
         console.log("Creating FTS5 index for table:", schema.table);
-        await turso.executeMultiple(sql);
+        await dbClient.executeMultiple(sql);
       } catch (error) {
         console.log(
           "Skipping index creation due to error:",

@@ -8,18 +8,29 @@ Currently tools like [Drizzle ORM](https://orm.drizzle.team/docs/overview), [Kys
 
 Ensure your turso databse URL and token are configured. See TS quick [start guide](https://docs.turso.tech/sdk/ts/quickstart) for how to generate a new token.
 
+### Config for remote database
+
 ```env
 TURSO_DATABASE_URL=
 TURSO_AUTH_TOKEN=
+```
 
+### Config for local database
+
+We can apply to a local database file by specifiying a local path instead of remote URL and skip `TURSO_AUTH_TOKEN`.
+
+```env
+TURSO_DATABASE_URL=file:./<path to file>
 ```
 
 Install the `scout-sqlite` cli using your favourite package manager
 
-- `npm install scout-sqlite -D`
-- `pnpm add scout-sqlite -D`
-- `yarn add scout-sqlite -D`
-- `bun install scout-sqlite`
+| package manager | command |
+| --------------- | ------- |
+| npm | `npm install scout-sqlite -D` |
+| pnpm | `pnpm add scout-sqlite -D` |
+| yarn | `yarn add scout-sqlite -D` |
+| bun | `bun install scout-sqlite` |
 
 Initialize an empty configuration file with `npx scout init`. This creates a `sqlitefts5rc.json` file in the current working directory.
 
@@ -39,7 +50,8 @@ Initialize an empty configuration file with `npx scout init`. This creates a `sq
 
 Replace place holder text with your own values then run `npx scout apply` to create the FTS5 indexes and management triggers.
 
+- If you're using a local file then use `-l` or `--local` flag to bypass `TURSO_AUTH_TOKEN` requirement.
+
 ## Roadmap
 
-- Support local SQLite db
 - Handle updates of existing indexes and triggers
