@@ -1,6 +1,6 @@
-# Scout-sqlite (WIP)
+# Scout-sqlite
 
-> This is still a WIP tool. I am Looking for your feedback in [Feedback](https://github.com/JayJamieson/scout-sqlite/issues/1) issue.
+> I am Looking for your feedback in [Feedback](https://github.com/JayJamieson/scout-sqlite/issues/1) issue.
 
 Currently tools like [Drizzle ORM](https://orm.drizzle.team/docs/overview), [Kysely](https://kysely.dev/docs/intro) don't support SQLite FTS index creation through table definitions. Scout-sqlite aims to bridge that gap by helping create and manage FTS index creation by generating and applying the SQL for you.
 
